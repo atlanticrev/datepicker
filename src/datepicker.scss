@@ -264,6 +264,11 @@ $font-size: $width * .056;
         background: orange;
       }
     }
+
+    &.qs-in-range {
+      border-radius: 0;
+      background: orange;
+    }
   }
 
   .qs-event {

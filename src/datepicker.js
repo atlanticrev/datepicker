@@ -688,12 +688,16 @@ function createMonth(date, instance, overlayOpen) {
 
       // Disabled dates.
       if (
-        (minDate && thisDay < minDate) ||
-        (maxDate && thisDay > maxDate) ||
         disabler(thisDay) ||
         disabledDates.includes(+thisDay) ||
         (noWeekends && weekendIndices.includes(weekdayIndex))
       ) otherClass = 'qs-disabled'
+
+      // Sqares in range
+      if (
+        (minDate && thisDay >= minDate) &&
+        (maxDate && thisDay <= maxDate)
+      ) otherClass = 'qs-in-range'      
 
       // Show events for squares with a number even if they are disabled.
       if (hasEvent) otherClass += eventClass
@@ -704,6 +708,14 @@ function createMonth(date, instance, overlayOpen) {
 
     // Currently selected day.
     if (+thisDay === +dateSelected && !outsideOfCurrentMonth) otherClass += ' qs-active'
+
+    // Unset .qs-active when square is disable
+    if (otherClass.indexOf('qs-disabled') != -1 && otherClass.indexOf('qs-active') != -1) {
+      let unusedClass = ' qs-active';
+      let start = otherClass.slice(0, otherClass.indexOf(unusedClass));
+      let end = otherClass.slice(otherClass.indexOf(unusedClass) + unusedClass.length);
+      otherClass = start + end;
+    }
 
     calendarSquares.push(`<div class="qs-square qs-num ${weekday} ${otherClass}">${span}</div>`)
   }
