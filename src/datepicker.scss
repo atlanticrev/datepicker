@@ -225,7 +225,7 @@ $font-size: $width * .056;
     justify-content: center;
     cursor: pointer;
     transition: background .1s;
-    border-radius: $radius;
+    // border-radius: $radius;
 
     &.qs-current {
       font-weight: bold;
