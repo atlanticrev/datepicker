@@ -697,8 +697,8 @@ function createMonth(date, instance, overlayOpen) {
       if (
         (minDate && thisDay >= minDate) &&
         (maxDate && thisDay <= maxDate)
-      ) otherClass = 'qs-in-range'    
-      
+      ) otherClass = 'qs-in-range'
+
       if (instance.second) {
         if (
           minDate && thisDay < minDate
